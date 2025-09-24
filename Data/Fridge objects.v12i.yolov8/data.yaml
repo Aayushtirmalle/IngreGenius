@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 10
+names: ['avocado', 'bacon', 'butter', 'cheese', 'eggs', 'lemon', 'milk', 'pepper', 'tomatoes', 'yogurt']
+
+roboflow:
+  workspace: fooddetection-essdj
+  project: fridge-objects
+  version: 12
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/fooddetection-essdj/fridge-objects/dataset/12
