@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Define the path to your trained model weights
 # We use Path for better cross-platform compatibility (Windows/Mac/Linux)
-MODEL_PATH = Path(__file__).resolve().parent.parent / 'models' / 'IngreGenius_Fridge_Run2_AdamW' / 'weights' / 'best.pt'
+MODEL_PATH = Path(__file__).resolve().parent.parent / 'models' / 'IngreGenius_SuperModel_Run13' / 'weights' / 'best.pt'
 
 def get_ingredients_from_image(image_path: str) -> list[str]:
     """
@@ -48,15 +48,15 @@ def get_ingredients_from_image(image_path: str) -> list[str]:
 if __name__ == '__main__':
     # You need a test image. Find one in your dataset's 'valid/images' folder.
     # IMPORTANT: Make sure the relative path is correct for your project structure.
-    test_image = '/home/atirmalle/Schreibtisch/Computer Vision/IngreGenius/Data/Fridge objects.v12i.yolov8/test/images/img8_png.rf.ac8d6693193d5725f27ac49eb2234669.jpg'
+    test_image = '/home/atirmalle/Schreibtisch/Computer_Vision/IngreGenius/Data/Fridge objects.v12i.yolov8/test/images/img8_png.rf.ac8d6693193d5725f27ac49eb2234669.jpg'
 
     try:
         ingredients = get_ingredients_from_image(test_image)
         if ingredients:
-            print("? Detected Ingredients:")
+            print("Detected Ingredients:")
             print(ingredients)
         else:
-            print("?? No ingredients were detected in the image.")
+            print("No ingredients were detected in the image.")
     except FileNotFoundError as e:
         print(f"Error: {e}")
     except Exception as e:

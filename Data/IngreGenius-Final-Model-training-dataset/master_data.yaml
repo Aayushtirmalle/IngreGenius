@@ -1,0 +1,55 @@
+
+train:
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/Fridge objects.v12i.yolov8/train/images/
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/Grocery_YOLO_Dataset_Small/Grocery_YOLO_Dataset_Small/images/train/
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/IngreGenius-Raw-Uploads.v1i.yolov8/train/images/
+
+val:
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/Fridge objects.v12i.yolov8/valid/images/
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/Grocery_YOLO_Dataset_Small/Grocery_YOLO_Dataset_Small/images/val/
+  - /home/atirmalle/Schreibtisch/Computer_Vision/Data/IngreGenius-Raw-Uploads.v1i.yolov8/valid/images/
+  
+
+# Number of classes
+nc: 39 
+
+names:
+  - avocado
+  - bacon
+  - butter
+  - cheese
+  - eggs
+  - egg
+  - lemon
+  - milk
+  - pepper
+  - tomatoes
+  - yogurt
+  - yoghurt
+  - apple
+  - asparagus
+  - beans
+  - bean
+  - carrot
+  - cheese
+  - garlic
+  - ginger
+  - orange
+  - peanut butter
+  - strawberry
+  - tomato
+  - water
+  - wine
+  - yellow pepper
+  - juice
+  - radish
+  - beetroot
+  - cauliflower
+  - corn
+  - bell pepper
+  - cucumber
+  - potato
+  - cabbage
+  - onion
+  - watermelon
+  - zucchini
