@@ -51,7 +51,7 @@ Follow these simple steps to set up and reproduce the IngreGenius project. No pr
    the .env file should look like this 
    ```
     # .env file
-    LLM_API_KEY="paste you API Key here"
+    LLM_API_KEY="paste your API Key here"
    ```
 
 ---
