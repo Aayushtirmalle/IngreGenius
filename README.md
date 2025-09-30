@@ -20,7 +20,7 @@ This project addresses the common dilemma of "what can I make with what I have?"
 ## Core Features
 
 -   **AI-Powered Ingredient Detection:** Utilizes a YOLOv8 model to accurately identify and list multiple food items from a single image.
--   **Smart Meal Categorization:** Implements a logic engine to analyze the ingredient list and unlock relevant meal categories. For example, the presence of sugar or fruit unlocks "Sweet Dishes," while eggs suggest "Breakfast."
+-   **Smart Meal Categorization:** Implements a logic engine to analyze the ingredient list and unlock relevant meal categories.
 -   **Dynamic Recipe Generation:** Sends a context-aware prompt to the Deepseek LLM to generate high-quality recipes based on the detected ingredients and the user's chosen meal type.
 -   **User-Friendly Interface:** Provides a simple web interface (built with Streamlit) for users to upload an image and receive instant recipe inspiration.
 
