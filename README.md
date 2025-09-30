@@ -2,6 +2,17 @@
 
 **Just open your fridge and ask. IngreGenius is a smart kitchen assistant that transforms a photo of your refrigerator's contents into delicious, categorized recipe suggestions.**
 
+## Contents
+- [Project Description](#project-description)
+- [Getting Started](#getting-started)
+- [Core Features](#core-features)
+- [Main Goals & Objectives](#main-goals--objectives)
+- [How It Works: The Pipeline](#how-it-works-the-pipeline)
+- [Technology Stack](#technology-stack)
+- [Results or Output](#results-or-output)
+
+
+
 ## Project Description
 
 This project addresses the common dilemma of "what can I make with what I have?" by bridging the gap between computer vision and natural language processing. IngreGenius first uses a **YOLOv8 object detection model** to identify food items from a user-uploaded image. It then intelligently analyzes this list of ingredients to determine available meal categories (like Breakfast, Lunch, Dinner, or Sweet Dishes) based on key components. Finally, it leverages the **Deepseek large language model** via OpenRouter to generate creative and practical recipes tailored to the user's choice.
@@ -11,7 +22,7 @@ This project addresses the common dilemma of "what can I make with what I have?"
 -   **AI-Powered Ingredient Detection:** Utilizes a YOLOv8 model to accurately identify and list multiple food items from a single image.
 -   **Smart Meal Categorization:** Implements a logic engine to analyze the ingredient list and unlock relevant meal categories. For example, the presence of sugar or fruit unlocks "Sweet Dishes," while eggs suggest "Breakfast."
 -   **Dynamic Recipe Generation:** Sends a context-aware prompt to the Deepseek LLM to generate high-quality recipes based on the detected ingredients and the user's chosen meal type.
--   **User-Friendly Interface:** Provides a simple web interface (built with Streamlit/Flask) for users to upload an image and receive instant recipe inspiration.
+-   **User-Friendly Interface:** Provides a simple web interface (built with Streamlit) for users to upload an image and receive instant recipe inspiration.
 
 ## Main Goals & Objectives
 
@@ -36,5 +47,13 @@ The primary goal of this project is to build a practical, end-to-end AI applicat
 -   **Backend:** Python
 -   **Computer Vision:** PyTorch, YOLOv8
 -   **NLP / Recipe Generation:** Deepseek LLM, OpenRouter API, OpenAI Python Library
--   **Frontend (planned):** Streamlit or Flask
--   **Data:** Custom-trained on a public food detection dataset from Roboflow/Kaggle.
+-   **Frontend:** Streamlit
+-   **Data:** Custom-trained on a public food detection dataset from Roboflow/Kaggle
+
+## Getting Started
+
+For detailed instructions on how to set up and run this project, check out the [Getting Started Guide](GETTING_STARTED.md).
+
+## Results or Output
+
+For detailed results and examples of the project's functionality, check out the [Results or Output Page](RESULTS.md).

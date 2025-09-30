@@ -3,3 +3,6 @@
 
 # Python
 __pycache__/
+
+# Temp_uploads -> folder whch store the uploaded images temporarily
+temp_uploads/

@@ -2,8 +2,6 @@ import streamlit as st
 from pathlib import Path
 import time
 import base64
-
-# --- Import your project's modules ---
 from src.ingregenius.ingredients import INGREDIENT_DATABASE
 from src.ingregenius.food_detector import get_ingredients_from_image
 from src.ingregenius.recipe_generator import generate_two_recipes
@@ -17,30 +15,21 @@ def set_background_and_theme(image_file):
     try:
         with open(image_file, "rb") as f:
             encoded_string = base64.b64encode(f.read()).decode()
-        
-        # Inject the comprehensive CSS for a complete dark theme
         st.markdown(
             f"""
             <style>
-            /* --- 1. Main Background & Overlay --- */
             .stApp {{
                 background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("data:image/jpeg;base64,{encoded_string}");
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
             }}
-
-            /* --- 2. Make Header Transparent --- */
             [data-testid="stHeader"] {{
                 background-color: transparent;
             }}
-
-            /* --- 3. Global Font Color --- */
             body, .stApp, .stApp h1, .stApp h2, .stApp h3, p, label {{
                 color: #FFFFFF !important;
             }}
-
-            /* --- 4. Button Styling --- */
             .stButton > button {{
                 color: white;
                 background-color: transparent;
@@ -51,54 +40,35 @@ def set_background_and_theme(image_file):
             .stButton > button:hover {{
                 background-color: rgba(255, 255, 255, 0.2);
             }}
-
-            /* --- 5. File Uploader Fixes --- */
-            /* "Browse files" text */
             [data-testid="stFileUploadDropzone"] p {{
                 color: #FFFFFF !important;
             }}
-            /* Uploaded file name text */
             .uploadedFileName {{
                 color: #FFFFFF !important;
             }}
-
-            /* --- 6. Expander & Multi-Select Fixes --- */
-            
-            /* Expander header (title and arrow) */
             [data-testid="stExpander"] summary {{
                 color: #FFFFFF !important;
             }}
             [data-testid="stExpander"] summary svg {{
                 color: #FFFFFF !important;
             }}
-            
-            /* Main container for the multi-select box */
             div[data-baseweb="select"] > div {{
-                background-color: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent light background */
-                border: 1px solid rgba(255, 255, 255, 0.5) !important; /* Faint white border */
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                border: 1px solid rgba(255, 255, 255, 0.5) !important;
                 color: white !important;
             }}
-            
-            /* Placeholder text ("Choose options") */
             div[data-baseweb="select"] > div > div {{
                 color: #ccc !important;
             }}
-
-            /* Dropdown arrow in the multi-select */
             div[data-baseweb="select"] svg {{
                 color: white !important;
             }}
-
-            /* Selected item "pills" (e.g., "Onion") text color */
             .st-emotion-cache-1q8d0hz span {{
                  color: white !important;
             }}
-            
-            /* Background of the dropdown menu itself */
             .st-emotion-cache-1o5dclc {{
-                background-color: rgba(38, 39, 48, 0.95); /* Dark, almost opaque dropdown */
+                background-color: rgba(38, 39, 48, 0.95);
             }}
-
             </style>
             """,
             unsafe_allow_html=True
@@ -106,11 +76,9 @@ def set_background_and_theme(image_file):
     except FileNotFoundError:
         st.error(f"Background image not found at path: {image_file}")
 
-# --- Call the function to set the background at the start of the app ---
+
 set_background_and_theme("./src/ingregenius/background_image.jpg")
 
-
-# --- Streamlit Page Functions (The rest of your code remains the same) ---
 
 def initialize_session_state():
     """Initializes session state variables if they don't exist."""
@@ -145,7 +113,6 @@ def meal_selection_page():
         horizontal=True,
         label_visibility="collapsed"
     )
-    
     if st.button("Next"):
         st.session_state.meal_type = st.session_state.meal_type_radio
         navigate_to("upload")
@@ -275,7 +242,6 @@ def recipe_page():
         st.rerun()
 
 
-# --- Main App Router ---
 initialize_session_state()
 
 page_to_show = st.session_state.get("page", "welcome")

@@ -1,16 +1,13 @@
 # remap_labels.py
 from pathlib import Path
 import shutil
-import yaml  # You might need to install this: pip install pyyaml
+import yaml  
 
 # --- CONFIGURATION ---
 
-# 1. Path to your master list of class names.
+# Path to master list of class names.
 MASTER_CLASSES_FILE = Path("./Data/IngreGenius-Final-Model-training-dataset/master_classes.txt")
 
-# 2. --- IMPORTANT ---
-#    Define your source datasets. Update these paths to the absolute paths
-#    of your original dataset's .yaml files.
 SOURCE_DATASETS = [
     {
         "name": "Fridge objects.v12i.yolov8",
@@ -26,8 +23,6 @@ SOURCE_DATASETS = [
     },
 ]
 
-# 3. Define a NEW location to save the remapped labels.
-#    This keeps your original data safe.
 REMAPPED_LABELS_DIR = Path("./Data/IngreGenius-Final-Model-training-dataset/master_labels")
 
 # --- SCRIPT LOGIC ---
@@ -48,12 +43,10 @@ if __name__ == "__main__":
         print(f"Clearing old remapped labels directory: {REMAPPED_LABELS_DIR}")
         shutil.rmtree(REMAPPED_LABELS_DIR)
     
-    # Load the master class list and create a mapping from name to new index
     master_classes = load_class_list_from_txt(MASTER_CLASSES_FILE)
     master_map = {name.lower(): i for i, name in enumerate(master_classes)}
     print(f"Loaded {len(master_classes)} master classes.")
 
-    # Loop through each source dataset
     for dataset in SOURCE_DATASETS:
         print(f"\nProcessing dataset: {dataset['name']}...")
         
@@ -85,7 +78,6 @@ if __name__ == "__main__":
                     else:
                         print(f"  - WARNING: Class '{original_class_name}' not in master list. Skipping.")
 
-            # Save the remapped file to a new, parallel directory structure
             relative_path = label_file.relative_to(dataset_root)
             new_label_path = REMAPPED_LABELS_DIR / dataset['name'] / relative_path
             new_label_path.parent.mkdir(parents=True, exist_ok=True)

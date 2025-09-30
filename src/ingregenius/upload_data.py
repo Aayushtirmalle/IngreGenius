@@ -5,18 +5,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # --- Configuration ---
-# Load environment variables from the .env file in your project root
 load_dotenv()
 
-# Securely get the values from the environment
 ROBOFLOW_API_KEY = os.getenv("ROBOFLOW_API_KEY")
 ROBOFLOW_WORKSPACE_ID = os.getenv("WORKSPACE_ID")
 ROBOFLOW_PROJECT_ID = os.getenv("PROJECT_ID")
 
-# --- IMPORTANT ---
-# Update this path to point to your dataset folder
 DATASET_PATH = Path("/home/atirmalle/Schreibtisch/Computer_Vision/Data/Dataset(to_be_labelled)/")
-
 # --- End of Configuration ---
 
 def upload_images_to_roboflow(api_key: str, workspace_id: str, project_id: str, dataset_dir: Path):
@@ -24,14 +19,12 @@ def upload_images_to_roboflow(api_key: str, workspace_id: str, project_id: str, 
     Uploads images from a directory structure to a Roboflow project.
     Each sub-directory in dataset_dir is treated as a class label.
     """
-    # Initialize the Roboflow API
     rf = roboflow.Roboflow(api_key=api_key)
     project = rf.workspace(workspace_id).project(project_id)
 
     print(f"Connected to project: {project.name}")
     print("-" * 30)
 
-    # Get all subdirectories, which represent the class labels
     class_dirs = [d for d in dataset_dir.iterdir() if d.is_dir()]
     if not class_dirs:
         print(f"Error: No subdirectories found in {dataset_dir}. Please structure your data correctly.")
@@ -39,13 +32,10 @@ def upload_images_to_roboflow(api_key: str, workspace_id: str, project_id: str, 
 
     print(f"Found {len(class_dirs)} classes to upload.")
 
-    # Iterate over each class directory
     for class_dir in class_dirs:
-        # Replace spaces and backslashes in folder names with dashes for clean labels
         label = class_dir.name.replace("\\", "-").replace(" ", "-").strip()
         print(f"\nProcessing Folder: '{class_dir.name}' -> Using Label: '{label}'")
 
-        # Find all image files in the current class directory
         image_paths = list(class_dir.glob("*.jpg")) + list(class_dir.glob("*.png"))
         
         if not image_paths:
@@ -54,14 +44,12 @@ def upload_images_to_roboflow(api_key: str, workspace_id: str, project_id: str, 
             
         print(f"  - Found {len(image_paths)} images. Starting upload...")
 
-        # Upload images in batches for better performance
         batch_size = 100 
         for i in range(0, len(image_paths), batch_size):
             batch = image_paths[i:i + batch_size]
             
             for image_path in batch:
                 try:
-                    # Upload the image, assign a data split, and pre-tag it with the class label
                     project.upload(
                         image_path=str(image_path),
                         split=random.choices(["train", "valid", "test"], [0.7, 0.2, 0.1], k=1)[0],
